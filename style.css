@@ -1,0 +1,21 @@
+h1{
+  text-align: center;
+}
+body{
+  background-color: rgb(129, 130, 131);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#movies{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+
+}
+div.movie-item > img {
+  width: 400px;
+  height: 440px;
+  border: 1px solid rgb(240, 217, 11);
+  margin: 0px 5px 0px 5px;
+}
