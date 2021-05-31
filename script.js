@@ -98,14 +98,15 @@ async function getMovies() {
     
 }
   
-getMovies()
 
-// async function listMovies() {
-//   try {
-//     const response = await 
-//   } catch(err){
-//     console.log(err)
-//   }
-// }
+async function listMovies() {
+  try {
+    const response = await getMovies()
 
-// listMovies()
+  } 
+  catch(err){
+    console.log(err)
+  }
+}
+
+listMovies()
