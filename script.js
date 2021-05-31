@@ -89,8 +89,8 @@ async function getMovies() {
     movieElem.appendChild(movieElemRating);
     movieElem.appendChild(document.createElement("br"));
 
-    document.getElementById("movies").appendChild(movieElem);
-    // list_of_movies.push(movieElem)
+    // document.getElementById("movies").appendChild(movieElem);
+    list_of_movies.push(movieElem)
 
     
   }
@@ -102,6 +102,11 @@ async function getMovies() {
 async function listMovies() {
   try {
     const response = await getMovies()
+
+    for(el of list_of_movies){
+      document.getElementById("movies").appendChild(el);
+    }
+
 
   } 
   catch(err){
