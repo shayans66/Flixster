@@ -19,3 +19,22 @@ div.movie-item > img {
   border: 1px solid rgb(240, 217, 11);
   margin: 0px 5px 0px 5px;
 }
+
+#loadmore{
+  display: inline-block;
+  background-color: #7b38d8;
+  border-radius: 20px;
+  border: 4px double #cccccc;
+  color: #eeeeee;
+  /* text-align: center; */
+  font-size: 15px;
+  padding: 10px;
+
+
+
+
+}
+#buttonDiv{
+  display: flex;
+  justify-content: center;
+}

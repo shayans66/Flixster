@@ -12,6 +12,12 @@ async function getMovies(PAGE) {
       API_KEY +
       "&language=en-US&page=" + PAGE
     )
+    // update page
+    console.log(PAGE)
+  
+    // PAGE++;
+
+
   data = await result.json();
   
       
@@ -45,6 +51,7 @@ async function getMovies(PAGE) {
     movieElem.appendChild(document.createElement("br"));
 
     document.getElementById("movies").appendChild(movieElem);
+
     // list_of_movies.push(movieElem)
 
     
@@ -52,21 +59,34 @@ async function getMovies(PAGE) {
       
     
 }
+
+// (async function a(){
+//   document.getElementById('loadmore').addEventListener('click', () => {
+//     // getMovies(PAGE);
+//   })
+// })()
   
 
-// async function listMovies() {
-//   try {
-//     const response = await getMovies()
+async function listMovies() {
+  try {
+    const response = await getMovies(PAGE)
+    PAGE++
 
-//     for(el of list_of_movies){
-//       document.getElementById("movies").appendChild(el);
-//     }
+    // getMovies(PAGE)
 
+    document.getElementById('loadmore').addEventListener('click', async function(){
+      await getMovies(PAGE)
+      PAGE++;
 
-//   } 
-//   catch(err){
-//     console.log(err)
-//   }
-// }
+      
+    })
 
-getMovies(PAGE)
+  } 
+  catch(err){
+    console.log(err)
+  }
+}
+
+listMovies()
+
+// getMovies(PAGE)
