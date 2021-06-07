@@ -38,3 +38,17 @@ div.movie-item > img {
   display: flex;
   justify-content: center;
 }
+.search{
+  text-align: center;
+}
+input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0 20px;
+  box-sizing: border-box;
+  border: 2px solid #555;
+}
+
+input[type=text]:focus {
+  background-color: lightblue;
+}
