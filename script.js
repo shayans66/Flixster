@@ -1,6 +1,8 @@
 const img_prefix = "https://image.tmdb.org/t/p/original";
 const API_KEY = "2d578ff54b28db88d467ae4065cd2bdb";
 
+
+
 let list_of_movies = [];
 
 let PAGE = 1;
@@ -10,17 +12,16 @@ async function getMovies(PAGE) {
   const result = await fetch(
     "https://api.themoviedb.org/3/movie/now_playing?api_key=" +
       API_KEY +
-      "&language=en-US&page=" + PAGE
-    )
-    // update page
-    console.log(PAGE)
-  
-    // PAGE++;
+      "&language=en-US&page=" +
+      PAGE
+  );
+  // update page
+  // console.log(PAGE)
 
+  // PAGE++;
 
   data = await result.json();
-  
-      
+
   // for each movie
   for (movie of data["results"]) {
     // create movie elem container div with inner container class
@@ -53,40 +54,54 @@ async function getMovies(PAGE) {
     document.getElementById("movies").appendChild(movieElem);
 
     // list_of_movies.push(movieElem)
-
-    
   }
-      
-    
 }
-
-// (async function a(){
-//   document.getElementById('loadmore').addEventListener('click', () => {
-//     // getMovies(PAGE);
-//   })
-// })()
-  
 
 async function listMovies() {
   try {
-    const response = await getMovies(PAGE)
-    PAGE++
+    const response = await getMovies(PAGE);
+    PAGE++;
 
     // getMovies(PAGE)
 
-    document.getElementById('loadmore').addEventListener('click', async function(){
-      await getMovies(PAGE)
-      PAGE++;
-
-      
-    })
-
-  } 
-  catch(err){
-    console.log(err)
+    document
+      .getElementById("loadmore")
+      .addEventListener("click", async function () {
+        await getMovies(PAGE);
+        PAGE++;
+      });
+  } catch (err) {
+    console.log(err);
   }
 }
 
-listMovies()
+function handleSearchQuery(inputStr){
+  
+  // if search not empty
+  if(inputStr){
+    console.log('hi');
+    // hide regular movies
+    document.getElementById('movies').style.display ='none'
+    
+  }
+  // else empty
+  else{
+    document.getElementById('movies').style.display ='flex'
+  }
+}
+
+
+window.onload = function() {
+
+
+  listMovies();
+
+  let input = document.querySelector('.search input')
+  input.addEventListener('input', () => {
+    handleSearchQuery(input.value)
+  })
+
+}
+
 
 // getMovies(PAGE)
