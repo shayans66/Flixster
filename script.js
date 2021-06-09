@@ -30,6 +30,7 @@ async function getMovies(PAGE) {
     // create movie elem container div with inner container class
     let movieElem = document.createElement("div");
     movieElem.classList.add("movie-item");
+    movieElem.style.margin = '0 0 20px'
 
     // create title
     let movieElemTitle = document.createElement("p");
@@ -104,6 +105,7 @@ async function handleSearchQuery(inputStr){
 
     for(movie of results) {
       let movieElem = document.createElement('div')
+      movieElem.style.margin = '0 0 20px'
       movieElem.classList.add("movie-item")
       movieElem.classList.add("movies")
 
