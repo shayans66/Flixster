@@ -1,4 +1,7 @@
 const img_prefix = "https://image.tmdb.org/t/p/original";
+
+const search_prefix = "https://api.themoviedb.org/3/search/movie?language=en-US&page=1&include_adult=false"
+
 const API_KEY = "2d578ff54b28db88d467ae4065cd2bdb";
 
 
@@ -75,13 +78,60 @@ async function listMovies() {
   }
 }
 
-function handleSearchQuery(inputStr){
+async function handleSearchQuery(inputStr){
   
   // if search not empty
   if(inputStr){
     console.log('hi');
     // hide regular movies
     document.getElementById('movies').style.display ='none'
+
+    // search for movie
+
+    // https://api.themoviedb.org/3/search/movie?api_key=2d578ff54b28db88d467ae4065cd2bdb&language=en-US&query=Wrath%20of%20man&page=1&include_adult=false
+    const res = await fetch(
+      search_prefix +
+      "&query=" +
+      inputStr.replace(' ', '%20') +
+      "&api_key=" +
+      API_KEY
+    )
+    data = await res.json()
+
+    const results = data['results']
+
+
+
+    for(movie of results) {
+      let movieElem = document.createElement('div')
+      movieElem.classList.add("movie-item")
+      movieElem.classList.add("movies")
+
+      movieElem.innerHTML += `
+        <p style="text-align: center; margin: 0">
+        ${movie['original_title']}
+        </p>
+        <p style="text-align: center; margin: 0">
+        ${"⭐" + movie["vote_average"]}
+        </p>
+        <img src="${img_prefix + movie['poster_path']}" alt="${movie['original_title']}">
+      `
+
+      console.log(
+        `
+        <p style="text-align: center; margin: 0">
+        ${movie['original_title']}
+        </p>
+        <p style="text-align: center; margin: 0">
+        ${"⭐" + movie["vote_average"]}
+        </p>
+        <img src="${img_prefix + movie['poster_path']}" alt="${movie['original_title']}">
+      `
+      );
+      
+
+      document.getElementById('searchmovies').appendChild(movieElem)
+    }
     
   }
   // else empty
@@ -98,6 +148,7 @@ window.onload = function() {
 
   let input = document.querySelector('.search input')
   input.addEventListener('input', () => {
+    
     handleSearchQuery(input.value)
   })
 
