@@ -13,11 +13,19 @@ body{
   align-content: center;
 
 }
+#searchmovies{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+
+}
+
 div.movie-item > img {
   width: 300px;
   height: 450px;
   border: 1px solid rgb(240, 217, 11);
-  margin: 0px 5px 0px 5px;
+  margin: 0px 5px 5px 5px;
 }
 
 #loadmore{

@@ -108,13 +108,13 @@ async function handleSearchQuery(inputStr){
       movieElem.classList.add("movies")
 
       movieElem.innerHTML += `
+        <img src="${img_prefix + movie['poster_path']}" alt="${movie['original_title']}">
         <p style="text-align: center; margin: 0">
         ${movie['original_title']}
         </p>
         <p style="text-align: center; margin: 0">
         ${"⭐" + movie["vote_average"]}
         </p>
-        <img src="${img_prefix + movie['poster_path']}" alt="${movie['original_title']}">
       `
 
       console.log(
