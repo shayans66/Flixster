@@ -18,6 +18,11 @@ async function getMovies(PAGE) {
       "&language=en-US&page=" +
       PAGE
   );
+
+  console.log("https://api.themoviedb.org/3/movie/now_playing?api_key=" +
+  API_KEY +
+  "&language=en-US&page=" +
+  PAGE);
   // update page
   // console.log(PAGE)
 
@@ -57,8 +62,13 @@ async function getMovies(PAGE) {
 
     document.getElementById("movies").appendChild(movieElem);
 
-    // list_of_movies.push(movieElem)
+
   }
+
+  // add listener to all images
+  document.images.forEach(img => {
+    img.addEventListener('click', handleImageClick)
+  });
 }
 
 async function listMovies() {
@@ -87,6 +97,8 @@ async function handleSearchQuery(inputStr){
     // hide regular movies
     document.getElementById('movies').style.display ='none'
 
+    // clear prev search movies
+    document.getElementById('searchmovies').innerHTML = ''
     // search for movie
 
     // https://api.themoviedb.org/3/search/movie?api_key=2d578ff54b28db88d467ae4065cd2bdb&language=en-US&query=Wrath%20of%20man&page=1&include_adult=false
@@ -142,6 +154,9 @@ async function handleSearchQuery(inputStr){
   }
 }
 
+function handleImageClick(){
+
+}
 
 window.onload = function() {
 
@@ -153,6 +168,8 @@ window.onload = function() {
     
     handleSearchQuery(input.value)
   })
+
+  
 
 }
 
