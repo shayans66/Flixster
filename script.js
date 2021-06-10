@@ -1,6 +1,7 @@
 const img_prefix = "https://image.tmdb.org/t/p/original";
 
 const search_prefix = "https://api.themoviedb.org/3/search/movie?language=en-US&page=1&include_adult=false"
+const get_movie_prefix = "https://api.themoviedb.org/3/movie/"
 
 const API_KEY = "2d578ff54b28db88d467ae4065cd2bdb";
 
@@ -56,7 +57,12 @@ async function  getMovies(PAGE) {
     // create movie element to be added to dom
     let movieElemImg = document.createElement("img");
     movieElemImg.src = img_prefix + movie["poster_path"];
-    movieElemImg.alt = movie["original_title"];
+    movieElemImg.alt = movie["original_title"] + '_' + movie.id;
+
+
+    movieElemImg.addEventListener('click', (event) => {
+      handleImageClick(event)
+    })
 
     // append poster, title, rating, break
     movieElem.appendChild(movieElemImg);
@@ -122,7 +128,7 @@ async function handleSearchQuery(inputStr){
       API_KEY
     )
     data = await res.json()
-
+      
     const results = data['results']
 
 
@@ -155,7 +161,19 @@ async function handleSearchQuery(inputStr){
   }
 }
 
-function handleImageClick(){
+async function handleImageClick(event){
+  // get id of movie
+  const alt = event.target.alt
+  const id = alt.substring(alt.indexOf('_')+1)
+
+  // get movie details with id
+  const res = await fetch(
+    get_movie_prefix + id
+    + '?api_key=' + API_KEY + '&language=en-US'
+  )
+  const data = await res.json()
+
+  
 
 }
 
@@ -176,5 +194,13 @@ window.onload = function() {
     const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=2d578ff54b28db88d467ae4065cd2bdb&language=en-US')
     genre_dict = await res.json()
   })()
+
+
+  // // add event listeners
+  // for(img of document.images){
+  //   img.addEventListener('click', (event) => {
+  //     console.log(event.target.alt);
+  //   })
+  // }
 
 }
