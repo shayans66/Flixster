@@ -28,28 +28,32 @@ Deployed Application (optional): sarn.xyz/Flixster
 
 ### Walkthough GIF
 
-`TODO://` Add the URL to your animated app walkthough `gif` in the image tag below, `YOUR_GIF_URL_HERE`. Make sure the gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after after adding gif)
 
 <img src="https://thumbs.gfycat.com/DeadlySoupyEider-size_restricted.gif" width=250><br>
 
 ### Reflection
 
-* Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
+* Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?*
 
-Add your response here
+
+Yes, the topics we talked about in class definitely were definitely relevant to what we discussed in class because we went over how fetch works with async and await which was an extremely important part of this project. 
+Also, little javascript things like forEach, promises, callbacks, dynamic dom element creation, template rendering, etc helped out for javascript dynamic features.
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-Add your response here
+If I had more time I would add the preview view, which would autoplay video elements that started playing the trailer, along with options to play some in-frame videos of movie critics reviewing the movie and giving their opinions on it.
+Also, I probably would add previous and next movie arrows on a preview to get the previews of movies adjecent to the current one.
+
+
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+I think that went well was my project was responsive, nice-looking, and functioned well, but the code behind it was a little bit like "spachgetti code". My functions weren't very consistent as their meaning changed over time as I added more functionality to the program, so its modularity is a bit blurred. Next time, I woud design/architect which functions would be most necessary and define exactly what they should do, before starting.
 
 ### Open-source libraries used
 
-- Add any links to open-source libraries used in your project.
+None
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+Carlos was a help for some javascript intricacies
