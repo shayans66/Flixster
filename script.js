@@ -5,13 +5,21 @@ const search_prefix = "https://api.themoviedb.org/3/search/movie?language=en-US&
 const API_KEY = "2d578ff54b28db88d467ae4065cd2bdb";
 
 
-
 let list_of_movies = [];
 
 let PAGE = 1;
 
+let moviesShowing = true
 
-async function getMovies(PAGE) {
+
+async function  getMovies(PAGE) {
+
+
+  
+    
+
+
+
   const result = await fetch(
     "https://api.themoviedb.org/3/movie/now_playing?api_key=" +
       API_KEY +
@@ -19,14 +27,8 @@ async function getMovies(PAGE) {
       PAGE
   );
 
-  console.log("https://api.themoviedb.org/3/movie/now_playing?api_key=" +
-  API_KEY +
-  "&language=en-US&page=" +
-  PAGE);
-  // update page
-  // console.log(PAGE)
 
-  // PAGE++;
+
 
   data = await result.json();
 
@@ -60,15 +62,20 @@ async function getMovies(PAGE) {
     movieElem.appendChild(movieElemRating);
     movieElem.appendChild(document.createElement("br"));
 
-    document.getElementById("movies").appendChild(movieElem);
+
+    if(moviesShowing)
+      document.getElementById('movies').appendChild(movieElem);
+    else
+      document.getElementById('searchmovies').appendChild(movieElem);
+
 
 
   }
 
   // add listener to all images
-  document.images.forEach(img => {
-    img.addEventListener('click', handleImageClick)
-  });
+  // document.images.forEach((img) => {
+  //   img.addEventListener('click', handleImageClick)
+  // });
 }
 
 async function listMovies() {
@@ -76,7 +83,7 @@ async function listMovies() {
     const response = await getMovies(PAGE);
     PAGE++;
 
-    // getMovies(PAGE)
+    moviesShowing = true
 
     document
       .getElementById("loadmore")
@@ -90,6 +97,9 @@ async function listMovies() {
 }
 
 async function handleSearchQuery(inputStr){
+
+  moviesShowing = false
+
   
   // if search not empty
   if(inputStr){
@@ -131,17 +141,6 @@ async function handleSearchQuery(inputStr){
         </p>
       `
 
-      console.log(
-        `
-        <p style="text-align: center; margin: 0">
-        ${movie['original_title']}
-        </p>
-        <p style="text-align: center; margin: 0">
-        ${"⭐" + movie["vote_average"]}
-        </p>
-        <img src="${img_prefix + movie['poster_path']}" alt="${movie['original_title']}">
-      `
-      );
       
 
       document.getElementById('searchmovies').appendChild(movieElem)
@@ -158,12 +157,14 @@ function handleImageClick(){
 
 }
 
+
 window.onload = function() {
 
-
+  
   listMovies();
 
   let input = document.querySelector('.search input')
+
   input.addEventListener('input', () => {
     
     handleSearchQuery(input.value)
@@ -172,6 +173,3 @@ window.onload = function() {
   
 
 }
-
-
-// getMovies(PAGE)
