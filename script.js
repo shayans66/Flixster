@@ -4,6 +4,8 @@ const search_prefix = "https://api.themoviedb.org/3/search/movie?language=en-US&
 
 const API_KEY = "2d578ff54b28db88d467ae4065cd2bdb";
 
+let genre_dict = {}
+
 
 let list_of_movies = [];
 
@@ -160,16 +162,19 @@ function handleImageClick(){
 
 window.onload = function() {
 
-  
+  // list movies
   listMovies();
-
+  // add search functionality
   let input = document.querySelector('.search input')
-
   input.addEventListener('input', () => {
     
     handleSearchQuery(input.value)
   })
 
-  
+  // get genre dict
+  ;(async () => {
+    const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=2d578ff54b28db88d467ae4065cd2bdb&language=en-US')
+    genre_dict = await res.json()
+  })()
 
 }
