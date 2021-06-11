@@ -140,7 +140,7 @@ async function handleSearchQuery(inputStr){
       movieElem.classList.add("movies")
 
       movieElem.innerHTML += `
-        <img src="${img_prefix + movie['poster_path']}" alt="${movie['original_title']}">
+        <img class="movie-search-item" src="${img_prefix + movie['poster_path']}" alt="${movie['original_title']}_${movie.id}">
         <p style="text-align: center; margin: 0">
         ${movie['original_title']}
         </p>
@@ -148,10 +148,13 @@ async function handleSearchQuery(inputStr){
         ${"⭐" + movie["vote_average"]}
         </p>
       `
+      
 
       
 
       document.getElementById('searchmovies').appendChild(movieElem)
+
+      
     }
     
   }
@@ -239,11 +242,14 @@ window.onload = function() {
     handleSearchQuery(input.value)
   })
 
-  // get genre dict
-  ;(async () => {
-    const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=2d578ff54b28db88d467ae4065cd2bdb&language=en-US')
-    genre_dict = await res.json()
-  })()
+  
+  document.body.addEventListener('click', (event) => {
+    if(event.target.matches('.movie-search-item')){
+      handleImageClick(event)
+    }
+  })
+
+
 
 
   // // add event listeners
