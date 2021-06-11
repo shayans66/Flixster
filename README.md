@@ -29,7 +29,7 @@ Deployed Application (optional): sarn.xyz/Flixster
 ### Walkthough GIF
 
 
-<img src="https://thumbs.gfycat.com/FearfulBestIbex-size_restricted.gif" width=250><br>
+<img src="https://thumbs.gfycat.com/FearfulBestIbex-size_restricted.gif" ><br>
 
 ### Reflection
 
