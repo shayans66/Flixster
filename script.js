@@ -162,6 +162,9 @@ async function handleSearchQuery(inputStr){
 }
 
 async function handleImageClick(event){
+
+
+
   // get id of movie
   const alt = event.target.alt
   const id = alt.substring(alt.indexOf('_')+1)
@@ -173,8 +176,55 @@ async function handleImageClick(event){
   )
   const data = await res.json()
 
-  
+  console.log(data);
 
+  document.getElementById('preview').innerHTML = `
+    <div style="position: fixed; top:0; width: 100vw; height:100vh; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, .5);">
+      <div id="preview-details" style="position:absolute; background-color: white; width: 800px; height: 600px; color: black">
+        <div>
+
+          
+          <h2 style="text-align: center;">${data.title}</h2>
+          <p style="text-align: center;">Genre(s): ${data.genres.map((el) => el.name)}</p>
+
+          <img style="position:absolute" width=150 height=225 alt="poster" src="${img_prefix + data.poster_path}">
+          <img width=600 height=337.5 alt="background" src="${img_prefix + data.backdrop_path}">
+
+          <p style="text-align: center;">${data.runtime} minutes | 
+          ${data.release_date} | 
+          ${data.vote_average}
+          <p style="padding: 10px">${data.overview}</p>
+
+        </div>
+
+      </div>
+    </div>
+  `
+  const newdiv = document.createElement('div')
+  const exit_button = document.createElement('button')
+  newdiv.appendChild(exit_button)
+
+  exit_button.innerHTML = 'Close'
+  newdiv.style = `
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 5px;
+  `
+  exit_button.style = `
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 32px;
+    font-size: 16px;
+  `
+  document.getElementById('preview-details').appendChild(newdiv)
+    // leave preview
+  exit_button.addEventListener('click', handleLeavePreview)
+
+}
+
+function handleLeavePreview(){
+  document.getElementById('preview').innerHTML = ''
 }
 
 
